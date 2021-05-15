@@ -78,10 +78,10 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc    Increase User Balance
+// @desc    Add User Balance
 // @route   PUT /api/users/profile/addBalance
 // @access  Private
-const addUserBalance = asyncHandler(async (req, res) => {
+const putAddUserBalance = asyncHandler(async (req, res) => {
   const user = await User.findByIdAndUpdate(
     req.user.id,
     {
@@ -105,4 +105,4 @@ const addUserBalance = asyncHandler(async (req, res) => {
   }
 })
 
-export { registerUser, authUser, getUserProfile, addUserBalance }
+export { registerUser, authUser, getUserProfile, putAddUserBalance }

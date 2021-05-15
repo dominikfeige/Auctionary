@@ -32,6 +32,7 @@ const putBidAuction = asyncHandler(async (req, res) => {
       req.params.id,
       {
         $inc: { currentBid: req.body.currentBid },
+        lastBidBy: req.user.id,
       },
       { new: true }
     )
