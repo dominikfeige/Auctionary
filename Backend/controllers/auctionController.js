@@ -28,7 +28,7 @@ const getRandomAuction = asyncHandler(async (req, res) => {
   if (currentUser.auctions.length >= 1) {
     randomAuction = await Auction.findRandom(
       {
-        _id: { $ne: currentUser.auctions },
+        _id: { $nin: currentUser.auctions },
       },
       { r: 0 }
     ).limit(1)
@@ -88,7 +88,6 @@ const putBidAuction = asyncHandler(async (req, res) => {
 const postCreateAuction = asyncHandler(async (req, res) => {
   const auction = new Auction({
     name: 'Sample name',
-    price: 0,
     image: '/images/sample.jpg',
     brand: 'Sample brand',
   })
@@ -102,10 +101,16 @@ const postCreateAuction = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const deleteAuction = asyncHandler(async (req, res) => {
   const auction = await Auction.findById(req.params.id)
+  const users = await User.updateMany(
+    { auctions: req.params.id },
+    { $pull: { auctions: req.params.id } }
+  )
+
+  console.log(users)
 
   if (auction) {
     await auction.remove()
-    res.json({ message: 'Auktion gelöscht' })
+    res.json({ message: 'Auktion wurde erfolgreich gelöscht' })
   } else {
     res.status(404)
     throw new Error('Auktion nicht gefunden')
