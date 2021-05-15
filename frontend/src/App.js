@@ -20,7 +20,7 @@ const App = () => {
           <Route path='/myAuctions' component={MyAuctionsScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
-          <Route path='/addBalance' component={AddBalanceScreen} exact />
+          <Route path='/addBalance' component={AddBalanceScreen} />
           <Route path='/' component={HomeScreen} exact />
         </Container>
       </main>
