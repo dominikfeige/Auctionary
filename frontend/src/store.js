@@ -1,13 +1,22 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { userLoginReducer, userRegisterReducer } from './reducers/userReducers'
-import { auctionRandomReducer } from './reducers/auctionReducers'
+import {
+  userLoginReducer,
+  userRegisterReducer,
+  userUpdateBalanceReducer,
+} from './reducers/userReducers'
+import {
+  auctionRandomReducer,
+  myAuctionsReducer,
+} from './reducers/auctionReducers'
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   auctionRandom: auctionRandomReducer,
+  myAuctions: myAuctionsReducer,
+  addUserBalance: userUpdateBalanceReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')
