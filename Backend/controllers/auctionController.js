@@ -106,8 +106,6 @@ const deleteAuction = asyncHandler(async (req, res) => {
     { $pull: { auctions: req.params.id } }
   )
 
-  console.log(users)
-
   if (auction) {
     await auction.remove()
     res.json({ message: 'Auktion wurde erfolgreich gelöscht' })
