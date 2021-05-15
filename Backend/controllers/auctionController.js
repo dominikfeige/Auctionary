@@ -7,11 +7,36 @@ import User from '../models/userModel.js'
 // @access  Private
 const getMyAuctions = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id).select('auctions')
-  const auctions = await Auction.find({ _id: user.auctions }).sort({
+  const auctions = await Auction.find({ _id: user.auctions }, { r: 0 }).sort({
     endDate: 1,
   })
   if (auctions && user) {
     res.json(auctions)
+  } else {
+    res.status(404)
+    throw new Error('Auktion oder Benutzer nicht gefunden')
+  }
+})
+
+// @desc    Get one random auction
+// @route   GET /api/auctions/randomAuction
+// @access  Private
+const getRandomAuction = asyncHandler(async (req, res) => {
+  const currentUser = await User.findById(req.user.id).select('auctions')
+
+  let randomAuction
+  if (currentUser.auctions.length >= 1) {
+    randomAuction = await Auction.findRandom(
+      {
+        _id: { $ne: currentUser.auctions },
+      },
+      { r: 0 }
+    ).limit(1)
+  } else {
+    randomAuction = await Auction.findRandom({}, { r: 0 }).limit(1)
+  }
+  if (randomAuction) {
+    res.json(randomAuction)
   } else {
     res.status(404)
     throw new Error('Auktion oder Benutzer nicht gefunden')
@@ -86,4 +111,10 @@ const deleteAuction = asyncHandler(async (req, res) => {
     throw new Error('Auktion nicht gefunden')
   }
 })
-export { getMyAuctions, postCreateAuction, deleteAuction, putBidAuction }
+export {
+  getMyAuctions,
+  postCreateAuction,
+  deleteAuction,
+  putBidAuction,
+  getRandomAuction,
+}

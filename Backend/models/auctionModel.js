@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import random from 'mongoose-random'
 
 const auctionSchema = mongoose.Schema(
   {
@@ -32,6 +33,7 @@ const auctionSchema = mongoose.Schema(
     timestamps: true,
   }
 )
+auctionSchema.plugin(random, { path: 'r' })
 
 const Auction = mongoose.model('Auction', auctionSchema)
 
