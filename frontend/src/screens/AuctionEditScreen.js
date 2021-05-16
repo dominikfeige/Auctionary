@@ -95,17 +95,17 @@ const AuctionEditScreen = ({ match, history }) => {
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId='name'>
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Produkt</Form.Label>
               <Form.Control
                 type='name'
-                placeholder='Namen eingeben'
+                placeholder='Produkt eingeben'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId='brand'>
-              <Form.Label>Brand</Form.Label>
+              <Form.Label>Marke</Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Marke eingeben'
@@ -115,7 +115,7 @@ const AuctionEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId='image'>
-              <Form.Label>Image</Form.Label>
+              <Form.Label>Bild</Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Bild URL eingeben'

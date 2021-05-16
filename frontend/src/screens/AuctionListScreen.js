@@ -10,6 +10,7 @@ import {
   createAuction,
 } from '../actions/auctionActions'
 import { AUCTION_CREATE_RESET } from '../constants/auctionConstants'
+import Countdown, { zeroPad } from 'react-countdown'
 
 const AuctionListScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -66,6 +67,24 @@ const AuctionListScreen = ({ history }) => {
     dispatch(createAuction())
   }
 
+  // Complete Componente
+  const Completionist = () => <span>Auktion fertig!</span>
+
+  // Renderer callback with condition
+  const renderer = ({ minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      return <Completionist />
+    } else {
+      // Render a countdown
+      return (
+        <span>
+          {zeroPad(minutes)}:{zeroPad(seconds)}
+        </span>
+      )
+    }
+  }
+
   return (
     <>
       <Row className='align-items-center'>
@@ -108,7 +127,9 @@ const AuctionListScreen = ({ history }) => {
                   <td>{auction.brand}</td>
                   <td>{auction.lastBidBy}</td>
                   <td>{auction.currentBid} €</td>
-                  <td>{auction.endDate}</td>
+                  <td>
+                    <Countdown date={auction.endDate} renderer={renderer} />
+                  </td>
                   <td>
                     <LinkContainer to={`/admin/auction/${auction._id}/edit`}>
                       <Button variant='light' className='btn-sm'>
