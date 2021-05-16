@@ -78,6 +78,10 @@ const putBidAuction = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id)
   const currentAuction = await Auction.findById(req.params.id)
 
+  if (req.user.id == currentAuction.lastBidBy) {
+    res.status(403)
+    throw new Error('Sie sind bereits höchstbietender!')
+  }
   if (req.body.bid <= currentAuction.currentBid) {
     res.status(403)
     throw new Error(
