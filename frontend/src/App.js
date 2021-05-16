@@ -10,6 +10,8 @@ import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import MyAuctionsScreen from './screens/MyAuctionsScreen'
 import AddBalanceScreen from './screens/AddBalanceScreen'
+import AuctionEditScreen from './screens/AuctionEditScreen'
+import AuctionListScreen from './screens/AuctionListScreen'
 
 const App = () => {
   return (
@@ -22,6 +24,12 @@ const App = () => {
           <Route path='/register' component={RegisterScreen} />
           <Route path='/addBalance' component={AddBalanceScreen} />
           <Route path='/' component={HomeScreen} exact />
+          <Route path='/admin/auction/:id/edit' component={AuctionEditScreen} />
+          <Route
+            path='/admin/auctionlist'
+            component={AuctionListScreen}
+            exact
+          />
         </Container>
       </main>
       <Footer />

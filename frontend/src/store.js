@@ -9,6 +9,11 @@ import {
 import {
   auctionRandomReducer,
   myAuctionsReducer,
+  auctionCreateReducer,
+  auctionDeleteReducer,
+  auctionDetailsReducer,
+  auctionUpdateReducer,
+  auctionListReducer,
 } from './reducers/auctionReducers'
 
 const reducer = combineReducers({
@@ -16,7 +21,12 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   auctionRandom: auctionRandomReducer,
   myAuctions: myAuctionsReducer,
-  addUserBalance: userUpdateBalanceReducer,
+  userAddBalance: userUpdateBalanceReducer,
+  auctionCreate: auctionCreateReducer,
+  auctionDelete: auctionDeleteReducer,
+  auctionDetails: auctionDetailsReducer,
+  auctionUpdate: auctionUpdateReducer,
+  auctionList: auctionListReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

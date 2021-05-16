@@ -3,7 +3,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../actions/userActions'
 
-import { Navbar, Nav, Container, Image } from 'react-bootstrap'
+import { Navbar, Nav, Container, Image, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import mainLogo from '../../../src/assets/logoSmall.svg'
 
@@ -46,6 +46,13 @@ const Header = () => {
                 />
               </Navbar.Brand>
             </LinkContainer>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <NavDropdown title='Admin' id='adminmenu'>
+              <LinkContainer to='/admin/auctionlist'>
+                <NavDropdown.Item>Auktionen</NavDropdown.Item>
+              </LinkContainer>
+            </NavDropdown>
           )}
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>

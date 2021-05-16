@@ -2,6 +2,29 @@ import asyncHandler from 'express-async-handler'
 import Auction from '../models/auctionModel.js'
 import User from '../models/userModel.js'
 
+// @desc    Fetch all auctions
+// @route   GET /api/auctions/admin
+// @access  Private/Admin
+const getAllAuctions = asyncHandler(async (req, res) => {
+  const auctions = await Auction.find({}, { r: 0 })
+
+  res.json({ auctions })
+})
+
+// @desc    Fetch single auction
+// @route   GET /api/auctions/:id
+// @access  Private
+const getAuctionById = asyncHandler(async (req, res) => {
+  const auction = await Auction.findById(req.params.id)
+
+  if (auction) {
+    res.json(auction)
+  } else {
+    res.status(404)
+    throw new Error('Auktion nicht gefunden')
+  }
+})
+
 // @desc    Get logged in auction
 // @route   GET /api/auctions/myAuctions
 // @access  Private
@@ -44,7 +67,7 @@ const getRandomAuction = asyncHandler(async (req, res) => {
 })
 
 // @desc    Bid on auction
-// @route   PUT /api/auctions/myAuctions
+// @route   PUT /api/auctions/:aid
 // @access  Private
 const putBidAuction = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id)
@@ -67,7 +90,7 @@ const putBidAuction = asyncHandler(async (req, res) => {
       $addToSet: { auctions: updatedAuction.id },
     })
 
-    if (updatedUser && updatedUser) {
+    if (updatedAuction) {
       res.json({
         name: updatedAuction.name,
         image: updatedAuction.image,
@@ -87,7 +110,7 @@ const putBidAuction = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const postCreateAuction = asyncHandler(async (req, res) => {
   const auction = new Auction({
-    name: 'Sample name',
+    name: 'Auktion Name',
     image: '/images/sample.jpg',
     brand: 'Sample brand',
   })
@@ -114,10 +137,34 @@ const deleteAuction = asyncHandler(async (req, res) => {
     throw new Error('Auktion nicht gefunden')
   }
 })
+
+// @desc    Update a product
+// @route   PUT /api/auctions/:id/edit
+// @access  Private/Admin
+const putUpdateAuction = asyncHandler(async (req, res) => {
+  const { name, image, brand } = req.body
+
+  const auction = await Auction.findById(req.params.id)
+
+  if (auction) {
+    auction.name = name
+    auction.brand = brand
+    auction.image = image
+
+    const updatedAuction = await auction.save()
+    res.json(updatedAuction)
+  } else {
+    res.status(404)
+    throw new Error('Auktion nicht gefunden')
+  }
+})
 export {
   getMyAuctions,
   postCreateAuction,
   deleteAuction,
   putBidAuction,
   getRandomAuction,
+  putUpdateAuction,
+  getAuctionById,
+  getAllAuctions,
 }

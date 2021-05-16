@@ -6,13 +6,13 @@ import Loader from '../components/shared/Loader'
 import FormContainer from '../components/shared/FormContainer'
 import { updateUserBalance } from '../actions/userActions'
 
-const AddBalanceScreen = ({ location, history }) => {
+const AddBalanceScreen = () => {
   const [balance, setBalance] = useState('0')
 
   const dispatch = useDispatch()
 
-  const addUserBalance = useSelector((state) => state.addUserBalance)
-  const { loading, error, info } = addUserBalance
+  const userAddBalance = useSelector((state) => state.userAddBalance)
+  const { loading, error, info } = userAddBalance
 
   const submitHandler = (e) => {
     e.preventDefault()
