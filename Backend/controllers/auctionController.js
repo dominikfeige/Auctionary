@@ -71,26 +71,38 @@ const getRandomAuction = asyncHandler(async (req, res) => {
 })
 
 // @desc    Bid on auction
-// @route   PUT /api/auctions/:aid
+// @route   PUT /api/auctions/:id
 // @access  Private
 const putBidAuction = asyncHandler(async (req, res) => {
+  const bid = req.body.bid
   const user = await User.findById(req.user.id)
+  const currentAuction = await Auction.findById(req.params.id)
 
-  if (user.balance < req.body.currentBid) {
+  if (req.body.bid <= currentAuction.currentBid) {
+    res.status(403)
+    throw new Error(
+      'Das Gebot ist niedriger oder gleich des aktuellen Gebotes.'
+    )
+  }
+  if (user.balance < currentAuction.currentBid) {
     res.status(403)
     throw new Error('Der Nutzer hat nicht genügend Guthaben!')
   } else {
     const updatedAuction = await Auction.findByIdAndUpdate(
       req.params.id,
       {
-        $inc: { currentBid: req.body.currentBid },
+        currentBid: bid,
         lastBidBy: req.user.id,
       },
       { new: true }
     )
 
+    const lastBidder = await User.findByIdAndUpdate(currentAuction.lastBidBy, {
+      $inc: { balance: +currentAuction.currentBid },
+    })
+
     const updatedUser = await User.findByIdAndUpdate(req.user.id, {
-      $inc: { balance: -req.body.currentBid },
+      $inc: { balance: -req.body.bid },
       $addToSet: { auctions: updatedAuction.id },
     })
 
