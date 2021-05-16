@@ -52,13 +52,13 @@ const getRandomAuction = asyncHandler(async (req, res) => {
     randomAuction = await Auction.findRandom(
       {
         _id: { $nin: currentUser.auctions },
-        endDate: { $gte: new Date() },
+        endDate: { $lte: new Date() },
       },
       { r: 0 }
     ).limit(1)
   } else {
     randomAuction = await Auction.findRandom(
-      { endDate: { $gte: new Date() } },
+      { endDate: { $lte: new Date() } },
       { r: 0 }
     ).limit(1)
   }
