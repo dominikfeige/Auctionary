@@ -11,7 +11,7 @@ const getAllAuctions = asyncHandler(async (req, res) => {
   res.json({ auctions })
 })
 
-// @desc    Fetch single auction
+// @desc    Fetch single auction with id
 // @route   GET /api/auctions/:id
 // @access  Private
 const getAuctionById = asyncHandler(async (req, res) => {
@@ -25,13 +25,13 @@ const getAuctionById = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc    Get logged in auction
+// @desc    Get allAuctions from one User
 // @route   GET /api/auctions/myAuctions
 // @access  Private
 const getMyAuctions = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id).select('auctions')
   const auctions = await Auction.find({ _id: user.auctions }, { r: 0 }).sort({
-    endDate: 1,
+    endDate: -1,
   })
   if (auctions && user) {
     res.json(auctions)
@@ -41,7 +41,7 @@ const getMyAuctions = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc    Get one random auction
+// @desc    Fetch one random auction
 // @route   GET /api/auctions/randomAuction
 // @access  Private
 const getRandomAuction = asyncHandler(async (req, res) => {
@@ -142,7 +142,7 @@ const deleteAuction = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc    Update a product
+// @desc    Update a auction
 // @route   PUT /api/auctions/:id/edit
 // @access  Private/Admin
 const putUpdateAuction = asyncHandler(async (req, res) => {
