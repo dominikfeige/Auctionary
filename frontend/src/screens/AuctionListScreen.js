@@ -113,7 +113,7 @@ const AuctionListScreen = ({ history }) => {
                 <th>AUKTION-ID</th>
                 <th>PRODUKT</th>
                 <th>Marke</th>
-                <th>Aktueller Bieter</th>
+                <th>Höchstbieter</th>
                 <th>Gebot</th>
                 <th>End Datum</th>
                 <th></th>

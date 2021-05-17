@@ -25,7 +25,7 @@ const auctionSchema = mongoose.Schema(
     },
     lastBidBy: {
       type: mongoose.Types.ObjectId,
-      ref: 'users',
+      ref: 'user',
       default: undefined,
     },
   },

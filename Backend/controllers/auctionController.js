@@ -25,13 +25,13 @@ const getAuctionById = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc    Get allAuctions from one User
+// @desc    Get all Auctions from one User
 // @route   GET /api/auctions/myAuctions
 // @access  Private
 const getMyAuctions = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id).select('auctions')
   const auctions = await Auction.find({ _id: user.auctions }, { r: 0 }).sort({
-    endDate: -1,
+    endDate: 1,
   })
   if (auctions && user) {
     res.json(auctions)
@@ -52,13 +52,13 @@ const getRandomAuction = asyncHandler(async (req, res) => {
     randomAuction = await Auction.findRandom(
       {
         _id: { $nin: currentUser.auctions },
-        endDate: { $lte: new Date() },
+        endDate: { $gte: new Date() },
       },
       { r: 0 }
     ).limit(1)
   } else {
     randomAuction = await Auction.findRandom(
-      { endDate: { $lte: new Date() } },
+      { endDate: { $gte: new Date() } },
       { r: 0 }
     ).limit(1)
   }
@@ -80,15 +80,15 @@ const putBidAuction = asyncHandler(async (req, res) => {
 
   if (req.user.id == currentAuction.lastBidBy) {
     res.status(403)
-    throw new Error('Sie sind bereits höchstbietender!')
+    throw new Error('Sie haben bereits auf die Auktion geboten!')
   }
   if (req.body.bid <= currentAuction.currentBid) {
     res.status(403)
     throw new Error(
-      'Das Gebot ist niedriger oder gleich des aktuellen Gebotes.'
+      'Ihr Gebot darf nicht gleich oder niedriger des aktuellen Gebotes sein.'
     )
   }
-  if (user.balance < currentAuction.currentBid) {
+  if (user.balance < bid) {
     res.status(403)
     throw new Error('Der Nutzer hat nicht genügend Guthaben!')
   } else {
