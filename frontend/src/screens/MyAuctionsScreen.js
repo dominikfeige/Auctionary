@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import AuctionCard from '../components/auctions/AuctionCard'
@@ -21,6 +22,10 @@ const MyAuctionsScreen = () => {
         <Loader />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
+      ) : auctions.length === 0 ? (
+        <Message variant='info'>
+          Sie haben auf keine <Link to='/'>Auktion</Link> geboten.
+        </Message>
       ) : (
         <>
           <Row>
