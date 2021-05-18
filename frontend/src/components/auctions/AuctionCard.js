@@ -1,9 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Countdown, { zeroPad } from 'react-countdown'
+import Message from '../shared/Message'
+import Loader from '../shared/Loader'
+import { useDispatch, useSelector } from 'react-redux'
+import { bidAuction } from '../../actions/auctionActions'
 
-import { Row, Container, Image } from 'react-bootstrap'
+import {
+  Row,
+  Container,
+  Image,
+  InputGroup,
+  Button,
+  Form,
+} from 'react-bootstrap'
 
 const AuctionCard = ({ auction }) => {
+  const [bid, setBid] = useState('0')
+
+  const dispatch = useDispatch()
+
+  const auctionBid = useSelector((state) => state.auctionBid)
+  const { loading, error } = auctionBid
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(bidAuction(bid, auction))
+  }
+
   // Complete Componente
   const Completionist = () => (
     <Container>
@@ -44,50 +70,84 @@ const AuctionCard = ({ auction }) => {
 
   return (
     <>
-      <Container className='my-3 p-4 rounded '>
-        <Row>
-          <h6 className='m-auto p-1'>Produkt</h6>
-        </Row>
-        <Row>
-          <h1 className='m-auto p-1'>{auction.name}</h1>
-        </Row>
-
-        <Row>
-          <Image className='m-auto p-1 w-50 border' src={auction.image} />
-        </Row>
-
-        <Row>
-          <h6 className='m-auto p-1'>Aktuelles Gebot</h6>
-        </Row>
-        <Row>
-          <div className='m-auto p-1 text-center'>
-            <h1>{auction.currentBid}€</h1>
-          </div>
-        </Row>
-
-        <Row>
-          <div className='m-auto p-1'>
-            <h4>
-              <Countdown date={auction.endDate} renderer={renderer}>
-                {' '}
-                <Row>
-                  <h6 className='m-auto p-1'>Verbleibende Zeit</h6>
-                </Row>
-              </Countdown>
-            </h4>
-          </div>
-        </Row>
-
-        <Row>
-          <h6 className='m-auto p-1'>Höchstbietender</h6>
-        </Row>
-        <Row>
-          <h1 className='m-auto p-1'>
-            <i className='fas fa-check text-success'></i>
-            <i className='fas fa-times text-danger'></i>
-          </h1>
-        </Row>
-      </Container>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'>{error}</Message>
+      ) : (
+        <Container className='my-3 p-4 rounded '>
+          <Row>
+            <h6 className='m-auto p-1'>Produkt</h6>
+          </Row>
+          <Row>
+            <h3 className='m-auto p-1'>{auction.name}</h3>
+          </Row>
+          <Row>
+            <div className='m-auto p-1'>
+              <Image
+                className='auction-photo p-1 img-fluid border'
+                src={auction.image}
+              />
+            </div>
+          </Row>
+          <Row>
+            <h6 className='m-auto p-1'>Aktuelles Gebot</h6>
+          </Row>
+          <Row>
+            <div className='m-auto p-1 text-center'>
+              <h4>{auction.currentBid}€</h4>
+            </div>
+          </Row>
+          <Row>
+            <h6 className='m-auto p-1'>Verbleibende Zeit</h6>
+          </Row>
+          <Row>
+            <div className='m-auto p-1'>
+              <h5>
+                <Countdown
+                  date={auction.endDate}
+                  renderer={renderer}
+                ></Countdown>
+              </h5>
+            </div>
+          </Row>
+          {userInfo._id === auction.lastBidBy ? (
+            <Row>
+              <div className='m-auto p-1 text-center'>
+                <h5 className='m-auto p-1'>Höchstbieter!</h5>
+                <h2>
+                  <i className='fas fa-check text-success m-auto'></i>
+                </h2>
+              </div>
+            </Row>
+          ) : (
+            <Container className='text-center'>
+              <Row className='m-auto w-25'>
+                <Form onSubmit={submitHandler}>
+                  <InputGroup className='p-1'>
+                    <Form.Control
+                      type='number'
+                      placeholder='Gebot'
+                      value={bid}
+                      onChange={(e) => setBid(e.target.value)}
+                    />
+                    <InputGroup.Append>
+                      <InputGroup.Text> €</InputGroup.Text>
+                    </InputGroup.Append>
+                  </InputGroup>
+                  <Button
+                    className='m-auto'
+                    type='submit'
+                    variant='btn btn-outline-success'
+                  >
+                    Bieten
+                  </Button>
+                </Form>
+              </Row>
+            </Container>
+          )}
+        </Container>
+      )}
     </>
   )
 }

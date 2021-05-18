@@ -30,7 +30,7 @@ const MyAuctionsScreen = () => {
         <>
           <Row>
             {auctions.map((auction) => (
-              <Col sm={12} md={6} lg={6} xl={6} key={auction._id}>
+              <Col sm={12} md={12} lg={12} xl={12} key={auction._id}>
                 <AuctionCard auction={auction} />
               </Col>
             ))}

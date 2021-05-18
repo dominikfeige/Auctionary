@@ -117,6 +117,7 @@ const putBidAuction = asyncHandler(async (req, res) => {
         brand: updatedAuction.balance,
         lastBidBy: updatedAuction.lastBidBy,
         currentBid: updatedAuction.currentBid,
+        endDate: updatedAuction.endDate,
       })
     } else {
       res.status(404)

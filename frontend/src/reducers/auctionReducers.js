@@ -22,6 +22,9 @@ import {
   AUCTION_LIST_REQUEST,
   AUCTION_LIST_SUCCESS,
   AUCTION_LIST_FAIL,
+  AUCTION_BID_REQUEST,
+  AUCTION_BID_SUCCESS,
+  AUCTION_BID_FAIL,
 } from '../constants/auctionConstants'
 
 export const auctionListReducer = (state = { auctions: [] }, action) => {
@@ -116,6 +119,19 @@ export const auctionDeleteReducer = (state = {}, action) => {
     case AUCTION_DELETE_SUCCESS:
       return { loading: false, success: true }
     case AUCTION_DELETE_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const auctionBidReducer = (state = { auction: {} }, action) => {
+  switch (action.type) {
+    case AUCTION_BID_REQUEST:
+      return { loading: true }
+    case AUCTION_BID_SUCCESS:
+      return { loading: false, success: true, auction: action.payload }
+    case AUCTION_BID_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state

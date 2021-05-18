@@ -681,6 +681,7 @@ pre code {
   flex: 0 0 25%;
   max-width: 25%;
 }
+
 .col-4 {
   -ms-flex: 0 0 33.333333%;
   flex: 0 0 33.333333%;
@@ -1898,6 +1899,12 @@ pre code {
     border: 0;
   }
 }
+
+.auction-photo {
+  height: 300px;
+  width: auto;
+}
+
 .table-responsive {
   display: block;
   width: 100%;

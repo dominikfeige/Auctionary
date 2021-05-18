@@ -21,6 +21,9 @@ import {
   AUCTION_LIST_REQUEST,
   AUCTION_LIST_SUCCESS,
   AUCTION_LIST_FAIL,
+  AUCTION_BID_REQUEST,
+  AUCTION_BID_SUCCESS,
+  AUCTION_BID_FAIL,
 } from '../constants/auctionConstants'
 import { logout } from './userActions'
 
@@ -259,6 +262,52 @@ export const deleteAuction = (id) => async (dispatch, getState) => {
     }
     dispatch({
       type: AUCTION_DELETE_FAIL,
+      payload: message,
+    })
+  }
+}
+
+export const bidAuction = (bid, auction) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: AUCTION_BID_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.put(
+      `/api/auctions/${auction._id}`,
+      { bid },
+      config
+    )
+
+    dispatch({
+      type: AUCTION_BID_SUCCESS,
+      payload: data,
+    })
+    dispatch({
+      type: AUCTION_RANDOM_SUCCESS,
+      payload: [data],
+    })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
+    }
+    dispatch({
+      type: AUCTION_BID_FAIL,
       payload: message,
     })
   }

@@ -14,6 +14,7 @@ import {
   auctionDetailsReducer,
   auctionUpdateReducer,
   auctionListReducer,
+  auctionBidReducer,
 } from './reducers/auctionReducers'
 
 const reducer = combineReducers({
@@ -27,6 +28,7 @@ const reducer = combineReducers({
   auctionDetails: auctionDetailsReducer,
   auctionUpdate: auctionUpdateReducer,
   auctionList: auctionListReducer,
+  auctionBid: auctionBidReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')
