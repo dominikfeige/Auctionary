@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {
+  userDetailsReducer,
   userLoginReducer,
   userRegisterReducer,
   userUpdateBalanceReducer,
@@ -23,6 +24,7 @@ const reducer = combineReducers({
   auctionRandom: auctionRandomReducer,
   myAuctions: myAuctionsReducer,
   userAddBalance: userUpdateBalanceReducer,
+  getUserDetails: userDetailsReducer,
   auctionCreate: auctionCreateReducer,
   auctionDelete: auctionDeleteReducer,
   auctionDetails: auctionDetailsReducer,

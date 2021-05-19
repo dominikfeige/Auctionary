@@ -4,7 +4,7 @@ import AuctionCard from '../components/auctions/AuctionCard'
 import Message from '../components/shared/Message'
 import Loader from '../components/shared/Loader'
 import { Row, Container, Button } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { listRandomAuction } from '../actions/auctionActions'
 const HomeScreen = () => {
   const history = useHistory()
@@ -38,9 +38,9 @@ const HomeScreen = () => {
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : auction.length === 0 ? (
-        <Message variant='warning'>
-          Aktuell werden keine Auktionen angeboten. Versuche dein Glück später
-          erneut!
+        <Message variant='info'>
+          Aktuell gibt es keine neue Auktionen. Haben Sie bereits auf{' '}
+          <Link to='/myAuctions'>Auktionen</Link> geboten?
         </Message>
       ) : (
         <>

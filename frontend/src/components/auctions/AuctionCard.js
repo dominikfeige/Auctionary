@@ -4,7 +4,7 @@ import Message from '../shared/Message'
 import Loader from '../shared/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { bidAuction } from '../../actions/auctionActions'
-
+import { getUserDetails } from '../../actions/userActions'
 import {
   Row,
   Container,
@@ -27,7 +27,7 @@ const AuctionCard = ({ auction }) => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(bidAuction(bid, auction))
+    dispatch(bidAuction(bid, auction)).then(() => dispatch(getUserDetails()))
   }
 
   // Complete Componente
@@ -72,10 +72,9 @@ const AuctionCard = ({ auction }) => {
     <>
       {loading ? (
         <Loader />
-      ) : error ? (
-        <Message variant='danger'>{error}</Message>
       ) : (
-        <Container className='my-3 p-4 rounded '>
+        <Container className='my-3 p-4 rounded text-center '>
+          {error && <Message variant='danger'>{error}</Message>}
           <Row>
             <h6 className='m-auto p-1'>Produkt</h6>
           </Row>
@@ -136,9 +135,9 @@ const AuctionCard = ({ auction }) => {
                     </InputGroup.Append>
                   </InputGroup>
                   <Button
-                    className='m-auto'
+                    className='m-2'
                     type='submit'
-                    variant='btn btn-outline-success'
+                    variant='btn btn-success'
                   >
                     Bieten
                   </Button>

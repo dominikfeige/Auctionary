@@ -55,8 +55,11 @@ const Header = () => {
             </NavDropdown>
           )}
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ml-auto'>
+          <Navbar.Collapse
+            id='basic-navbar-nav'
+            className='justify-content-end'
+          >
+            <Nav>
               {userInfo && (
                 <LinkContainer to='/addBalance'>
                   <Nav.Link>
@@ -86,7 +89,7 @@ const Header = () => {
               )}
               {!userInfo && (
                 <LinkContainer to='/login'>
-                  <Nav.Link>
+                  <Nav.Link className='mr-auto'>
                     <i className='fas fa-user-alt'></i> Anmelden
                   </Nav.Link>
                 </LinkContainer>

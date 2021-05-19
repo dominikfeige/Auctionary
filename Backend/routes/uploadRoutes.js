@@ -1,7 +1,6 @@
 import path from 'path'
 import express from 'express'
 import multer from 'multer'
-import sharp from 'sharp'
 
 const router = express.Router()
 

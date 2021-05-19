@@ -298,6 +298,10 @@ export const bidAuction = (bid, auction) => async (dispatch, getState) => {
       type: AUCTION_RANDOM_SUCCESS,
       payload: [data],
     })
+    dispatch({
+      type: AUCTION_MYAUCTIONS_SUCCESS,
+      payload: [data],
+    })
   } catch (error) {
     const message =
       error.response && error.response.data.message

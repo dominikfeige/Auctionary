@@ -71,6 +71,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       balance: user.balance,
       isAdmin: user.isAdmin,
       auctions: user.auctions,
+      token: generateToken(user._id),
     })
   } else {
     res.status(404)

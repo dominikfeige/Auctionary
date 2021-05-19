@@ -87,11 +87,11 @@ const AuctionListScreen = ({ history }) => {
 
   return (
     <>
-      <Row className='align-items-center'>
+      <Row>
         <Col>
           <h1>Auktionen</h1>
         </Col>
-        <Col className='text-right'>
+        <Col className='text-end'>
           <Button className='my-3' onClick={createAuctionHandler}>
             <i className='fas fa-plus'></i> Auktion erstellen
           </Button>
