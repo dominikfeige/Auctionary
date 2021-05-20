@@ -73,7 +73,7 @@ const AuctionCard = ({ auction }) => {
       {loading ? (
         <Loader />
       ) : (
-        <Container className='my-3 p-4 rounded text-center '>
+        <Container className='my-3 p-3 w-50 rounded card text-center bg-light rounded'>
           {error && <Message variant='danger'>{error}</Message>}
           <Row>
             <h6 className='m-auto p-1'>Produkt</h6>
