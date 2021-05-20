@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="./frontend/src/assets/logosmall.svg" width="180"  alt="Auctionary"/>
+  <img src="./frontend/src/assets/logoSmall.svg" width="180"  alt="Auctionary"/>
   <br>
   Auctionary
   <br>
