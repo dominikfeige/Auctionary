@@ -39,8 +39,7 @@ const HomeScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : auction.length === 0 ? (
         <Message variant='info'>
-          Aktuell gibt es keine neue Auktionen. Haben Sie bereits auf{' '}
-          <Link to='/myAuctions'>Auktionen</Link> geboten?
+          Aktuell gibt es keine neue zufällige Auktion
         </Message>
       ) : (
         <>

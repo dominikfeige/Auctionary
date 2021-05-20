@@ -22,30 +22,26 @@ const Header = () => {
       <Navbar bg='light' variant='light' expand='lg'>
         <Container>
           {userInfo && (
-            <LinkContainer to='/'>
-              <Navbar.Brand>
-                <Image
-                  src={mainLogo}
-                  width='75'
-                  height='75'
-                  className='d-inline-block align-top'
-                  alt='Auctionary logo'
-                />
-              </Navbar.Brand>
-            </LinkContainer>
+            <Navbar.Brand>
+              <Image
+                src={mainLogo}
+                width='75'
+                height='75'
+                className='d-inline-block align-top'
+                alt='Auctionary logo'
+              />
+            </Navbar.Brand>
           )}
           {!userInfo && (
-            <LinkContainer to='/login'>
-              <Navbar.Brand>
-                <Image
-                  src={mainLogo}
-                  width='75'
-                  height='75'
-                  className='d-inline-block align-top'
-                  alt='Auctionary logo'
-                />
-              </Navbar.Brand>
-            </LinkContainer>
+            <Navbar.Brand>
+              <Image
+                src={mainLogo}
+                width='75'
+                height='75'
+                className='d-inline-block align-top'
+                alt='Auctionary logo'
+              />
+            </Navbar.Brand>
           )}
           {userInfo && userInfo.isAdmin && (
             <NavDropdown title='Admin' id='adminmenu'>
@@ -61,14 +57,21 @@ const Header = () => {
           >
             <Nav>
               {userInfo && (
-                <LinkContainer to='/addBalance'>
+                <LinkContainer to='/addBalance' exact>
                   <Nav.Link>
                     <i class='fas fa-money-bill'></i> {userInfo.balance} €
                   </Nav.Link>
                 </LinkContainer>
               )}
               {userInfo && (
-                <LinkContainer to='/myAuctions'>
+                <LinkContainer to='/' exact>
+                  <Nav.Link>
+                    <i class='fas fa-dice'></i> Zufällige Auktion
+                  </Nav.Link>
+                </LinkContainer>
+              )}
+              {userInfo && (
+                <LinkContainer to='/myAuctions' exact>
                   <Nav.Link>
                     <i className='fas fa-gavel'></i> Meine Auktionen
                   </Nav.Link>

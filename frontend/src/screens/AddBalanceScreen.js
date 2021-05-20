@@ -32,13 +32,12 @@ const AddBalanceScreen = () => {
           )}
           {loading && <Loader />}
           <Form onSubmit={submitHandler}>
-            <Form.Label>Betrag auswählen</Form.Label>
+            <Form.Label>Betrag</Form.Label>
             <Form.Group controlId='addBalance'>
               <Form.Control
                 as='select'
                 onChange={(e) => setBalance(e.target.value)}
               >
-                <option value='0' label='Betrag auswählen' />
                 <option value='5'>5 €</option>
                 <option value='10'>10 €</option>
                 <option value='50'>50 €</option>
@@ -47,7 +46,7 @@ const AddBalanceScreen = () => {
               </Form.Control>
             </Form.Group>
 
-            <Button className='m-2' type='submit' variant='primary'>
+            <Button className='my-2 btn btn-success' type='submit'>
               Aufladen
             </Button>
           </Form>

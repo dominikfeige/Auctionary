@@ -77,8 +77,6 @@ const putBidAuction = asyncHandler(async (req, res) => {
   const bid = req.body.bid
   const user = await User.findById(req.user.id)
   const currentAuction = await Auction.findById(req.params.id)
-  const date = new Date()
-  console.log(date)
 
   if (req.user.id == currentAuction.lastBidBy) {
     res.status(403)
