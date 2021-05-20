@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="./frontend/src/assets/logosmall.svg" width="180"  alt="Auctionary"/>
+  <img src="./frontend/src/assets/logoSmall.svg" width="180"  alt="Auctionary"/>
   <br>
   Auctionary
   <br>
@@ -11,7 +11,7 @@
 <h5 align="center">Dominik / Sergius / Thilo / Ricardo</h5>
 
 <p align="center">
-  <a href="#Beispiel">Beispiel</a> •
+  <a href="https://auctionaryapp.herokuapp.com/">Demo anschauen</a> •
   <a href="#Anleitung für Programmierer">Anleitung für Programmierer</a> •
   <a href="#Beispiel">Beispiel</a>
 </p>
