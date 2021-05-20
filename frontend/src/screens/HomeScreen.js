@@ -4,7 +4,7 @@ import AuctionCard from '../components/auctions/AuctionCard'
 import Message from '../components/shared/Message'
 import Loader from '../components/shared/Loader'
 import { Row, Container, Button } from 'react-bootstrap'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { listRandomAuction } from '../actions/auctionActions'
 const HomeScreen = () => {
   const history = useHistory()
