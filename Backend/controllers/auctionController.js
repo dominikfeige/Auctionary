@@ -133,7 +133,7 @@ const postCreateAuction = asyncHandler(async (req, res) => {
   const auction = new Auction({
     name: 'Auktion Name',
     image: '/images/sample.jpg',
-    brand: 'Sample brand',
+    brand: 'Marke',
   })
 
   const createdAuction = await auction.save()

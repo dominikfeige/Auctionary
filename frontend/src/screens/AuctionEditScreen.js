@@ -131,8 +131,12 @@ const AuctionEditScreen = ({ match, history }) => {
               {uploading && <Loader />}
             </Form.Group>
 
-            <Button type='submit' variant='primary'>
-              Aktualisieren
+            <Button
+              className='my-2 btn btn-success'
+              type='submit'
+              variant='primary'
+            >
+              Speichern
             </Button>
           </Form>
         )}
