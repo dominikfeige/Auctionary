@@ -33,5 +33,5 @@ $ npm install
 
 ```bash
 # Webserver starten
-$ npm run start
+$ npm run dev
 ```
