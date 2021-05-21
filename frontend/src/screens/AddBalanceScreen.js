@@ -7,7 +7,7 @@ import FormContainer from '../components/shared/FormContainer'
 import { updateUserBalance } from '../actions/userActions'
 
 const AddBalanceScreen = () => {
-  const [balance, setBalance] = useState('0')
+  const [balance, setBalance] = useState('5')
 
   const dispatch = useDispatch()
 

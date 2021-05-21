@@ -73,79 +73,81 @@ const AuctionCard = ({ auction }) => {
       {loading ? (
         <Loader />
       ) : (
-        <Container className='my-3 p-3 w-50 rounded card text-center bg-light rounded'>
+        <>
           {error && <Message variant='danger'>{error}</Message>}
-          <Row>
-            <h6 className='m-auto p-1'>Produkt</h6>
-          </Row>
-          <Row>
-            <h3 className='m-auto p-1'>{auction.name}</h3>
-          </Row>
-          <Row>
-            <div className='m-auto p-1'>
-              <Image
-                className='auction-photo p-1 img-fluid border'
-                src={auction.image}
-              />
-            </div>
-          </Row>
-          <Row>
-            <h6 className='m-auto p-1'>Aktuelles Gebot</h6>
-          </Row>
-          <Row>
-            <div className='m-auto p-1 text-center'>
-              <h4>{auction.currentBid}€</h4>
-            </div>
-          </Row>
-          <Row>
-            <h6 className='m-auto p-1'>Verbleibende Zeit</h6>
-          </Row>
-          <Row>
-            <div className='m-auto p-1'>
-              <h5>
-                <Countdown
-                  date={auction.endDate}
-                  renderer={renderer}
-                ></Countdown>
-              </h5>
-            </div>
-          </Row>
-          {userInfo._id === auction.lastBidBy ? (
+          <Container className='my-3 p-3 w-50 rounded card text-center bg-light rounded'>
             <Row>
-              <div className='m-auto p-1 text-center'>
-                <h5 className='m-auto p-1'>Höchstbieter!</h5>
-                <h2>
-                  <i className='fas fa-check text-success m-auto'></i>
-                </h2>
+              <h6 className='m-auto p-1'>Produkt</h6>
+            </Row>
+            <Row>
+              <h3 className='m-auto p-1'>{auction.name}</h3>
+            </Row>
+            <Row>
+              <div className='m-auto p-1'>
+                <Image
+                  className='auction-photo p-1 img-fluid border'
+                  src={auction.image}
+                />
               </div>
             </Row>
-          ) : (
-            <Container className='text-center'>
-              <Row className='m-auto w-25'>
-                <Form onSubmit={submitHandler}>
-                  <InputGroup className='p-1'>
-                    <Form.Control
-                      type='number'
-                      placeholder='Gebot'
-                      value={bid}
-                      onChange={(e) => setBid(e.target.value)}
-                    />
-                    <InputGroup.Append>
-                      <InputGroup.Text> €</InputGroup.Text>
-                    </InputGroup.Append>
-                  </InputGroup>
-                  <Button
-                    className='m-2'
-                    type='submit'
-                    variant='btn btn-success'
-                  >
-                    Bieten
-                  </Button>
-                </Form>
+            <Row>
+              <h6 className='m-auto p-1'>Aktuelles Gebot</h6>
+            </Row>
+            <Row>
+              <div className='m-auto p-1 text-center'>
+                <h4>{auction.currentBid}€</h4>
+              </div>
+            </Row>
+            <Row>
+              <h6 className='m-auto p-1'>Verbleibende Zeit</h6>
+            </Row>
+            <Row>
+              <div className='m-auto p-1'>
+                <h5>
+                  <Countdown
+                    date={auction.endDate}
+                    renderer={renderer}
+                  ></Countdown>
+                </h5>
+              </div>
+            </Row>
+            {userInfo._id === auction.lastBidBy ? (
+              <Row>
+                <div className='m-auto p-1 text-center'>
+                  <h5 className='m-auto p-1'>Höchstbieter!</h5>
+                  <h2>
+                    <i className='fas fa-check text-success m-auto'></i>
+                  </h2>
+                </div>
               </Row>
-            </Container>
-          )}
-        </Container>
+            ) : (
+              <Container className='text-center'>
+                <Row className='m-auto w-25'>
+                  <Form onSubmit={submitHandler}>
+                    <InputGroup className='p-1'>
+                      <Form.Control
+                        type='number'
+                        placeholder='Gebot'
+                        value={bid}
+                        onChange={(e) => setBid(e.target.value)}
+                      />
+                      <InputGroup.Append>
+                        <InputGroup.Text> €</InputGroup.Text>
+                      </InputGroup.Append>
+                    </InputGroup>
+                    <Button
+                      className='m-2'
+                      type='submit'
+                      variant='btn btn-success'
+                    >
+                      Bieten
+                    </Button>
+                  </Form>
+                </Row>
+              </Container>
+            )}
+          </Container>
+        </>
       )}
     </>
   )
