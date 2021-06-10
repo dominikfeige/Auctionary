@@ -6,7 +6,7 @@ import User from '../models/userModel.js'
 // @route   GET /api/auctions/admin
 // @access  Private/Admin
 const getAllAuctions = asyncHandler(async (req, res) => {
-  const auctions = await Auction.find({}, { r: 0 })
+  const auctions = await Auction.find({}, { r: 0 }).populate('user')
 
   res.json({ auctions })
 })

@@ -178,7 +178,7 @@ export const createAuction = () => async (dispatch, getState) => {
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message
-    if (message === 'Not authorized, token failed') {
+    if (message === 'Token fehlerhaft') {
       dispatch(logout())
     }
     dispatch({
@@ -221,7 +221,7 @@ export const updateAuction = (auction) => async (dispatch, getState) => {
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message
-    if (message === 'Not authorized, token failed') {
+    if (message === 'Token fehlerhaft') {
       dispatch(logout())
     }
     dispatch({
@@ -257,7 +257,7 @@ export const deleteAuction = (id) => async (dispatch, getState) => {
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message
-    if (message === 'Not authorized, token failed') {
+    if (message === 'Token fehlerhaft') {
       dispatch(logout())
     }
     dispatch({
@@ -307,7 +307,7 @@ export const bidAuction = (bid, auction) => async (dispatch, getState) => {
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message
-    if (message === 'Not authorized, token failed') {
+    if (message === 'Token fehlerhaft') {
       dispatch(logout())
     }
     dispatch({
