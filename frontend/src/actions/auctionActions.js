@@ -186,6 +186,7 @@ export const createAuction = () => async (dispatch, getState) => {
       type: AUCTION_CREATE_FAIL,
       payload: message,
     })
+    toast.error(`${message}`)
   }
 }
 
@@ -229,6 +230,7 @@ export const updateAuction = (auction) => async (dispatch, getState) => {
       type: AUCTION_UPDATE_FAIL,
       payload: message,
     })
+    toast.error(`${message}`)
   }
 }
 
@@ -253,6 +255,7 @@ export const deleteAuction = (id) => async (dispatch, getState) => {
     dispatch({
       type: AUCTION_DELETE_SUCCESS,
     })
+    toast.success('Auktion Erfolgreich gelöscht.')
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -265,6 +268,7 @@ export const deleteAuction = (id) => async (dispatch, getState) => {
       type: AUCTION_DELETE_FAIL,
       payload: message,
     })
+    toast.error(`${message}`)
   }
 }
 

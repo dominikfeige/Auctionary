@@ -30,7 +30,6 @@ const App = () => {
             rtl={false}
             pauseOnFocusLoss={false}
             draggable
-            pauseOnHover
           />
           <Route path='/myAuctions' component={MyAuctionsScreen} />
           <Route path='/login' component={LoginScreen} />

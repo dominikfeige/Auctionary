@@ -25,7 +25,6 @@ const AddBalanceScreen = () => {
         <h2 className='text-center'>Guthaben aufladen</h2>
         <Container className='text-start'>
           {error && <Message variant='danger'>{error}</Message>}
-          {loading && <Loader />}
           <Form onSubmit={submitHandler}>
             <Form.Label>Betrag</Form.Label>
             <Form.Group controlId='addBalance'>
