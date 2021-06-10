@@ -34,20 +34,11 @@ const AuctionCard = ({ auction }) => {
   const Completionist = () => (
     <Container>
       <Row>
-        <h1 className='m-auto p-1'>Gewinner!</h1>
+        <h1 className='m-auto p-1'>Auktion ist abgelaufen!</h1>
       </Row>
       <Row>
         <h1 className='m-auto p-1'>
           <i className='fas fa-trophy text-warning'>{auction.id}</i>
-        </h1>
-      </Row>
-
-      <Row>
-        <h1 className='m-auto p-1'>Verlierer!</h1>
-      </Row>
-      <Row>
-        <h1 className='m-auto p-1'>
-          <i class='fas fa-skull-crossbones text-info'>{auction.id}</i>
         </h1>
       </Row>
     </Container>
