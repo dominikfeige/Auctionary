@@ -16,7 +16,7 @@ const auctionSchema = mongoose.Schema(
       required: true,
     },
     endDate: {
-      type: String,
+      type: Date,
       default: () => new Date(+new Date() + 60 * 60 * 1000),
     },
     currentBid: {

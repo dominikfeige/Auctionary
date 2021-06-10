@@ -126,7 +126,7 @@ export const getUserDetails = () => async (dispatch, getState) => {
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message
-    if (message === 'Not authorized, token failed') {
+    if (message === 'Token ungültig') {
       dispatch(logout())
     }
     dispatch({
@@ -173,7 +173,7 @@ export const updateUserBalance = (balance) => async (dispatch, getState) => {
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message
-    if (message === 'Not authorized, token failed') {
+    if (message === 'Der Token ist nicht gültig') {
       dispatch(logout())
     }
     dispatch({
