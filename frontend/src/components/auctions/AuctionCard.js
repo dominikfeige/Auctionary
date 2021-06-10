@@ -19,7 +19,7 @@ const AuctionCard = ({ auction }) => {
   const dispatch = useDispatch()
 
   const auctionBid = useSelector((state) => state.auctionBid)
-  const { loading, error } = auctionBid
+  const { loading } = auctionBid
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -79,6 +79,7 @@ const AuctionCard = ({ auction }) => {
                   <InputGroup className='p-1'>
                     <Form.Control
                       type='number'
+                      min='0'
                       placeholder='Gebot'
                       value={bid}
                       onChange={(e) => setBid(e.target.value)}

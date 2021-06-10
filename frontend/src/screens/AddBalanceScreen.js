@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/shared/Message'
-import Loader from '../components/shared/Loader'
 import FormContainer from '../components/shared/FormContainer'
 import { updateUserBalance } from '../actions/userActions'
 
@@ -12,7 +11,7 @@ const AddBalanceScreen = () => {
   const dispatch = useDispatch()
 
   const userAddBalance = useSelector((state) => state.userAddBalance)
-  const { loading, error } = userAddBalance
+  const { error } = userAddBalance
 
   const submitHandler = (e) => {
     e.preventDefault()
