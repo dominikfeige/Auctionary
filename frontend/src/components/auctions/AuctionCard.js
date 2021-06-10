@@ -66,7 +66,7 @@ const AuctionCard = ({ auction }) => {
           {userInfo._id === auction.lastBidBy ? (
             <Row>
               <div className='m-auto p-1 text-center'>
-                <h5 className='m-auto p-1'>Höchstbieter!</h5>
+                <h5 className='m-auto p-1'>Sie sind aktuell Höchstbieter!</h5>
                 <h2>
                   <i className='fas fa-check text-success m-auto'></i>
                 </h2>
