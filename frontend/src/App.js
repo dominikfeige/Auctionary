@@ -13,7 +13,7 @@ import AddBalanceScreen from './screens/AddBalanceScreen'
 import AuctionEditScreen from './screens/AuctionEditScreen'
 import AuctionListScreen from './screens/AuctionListScreen'
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import './ReactToastify.css'
 
 const App = () => {
   return (

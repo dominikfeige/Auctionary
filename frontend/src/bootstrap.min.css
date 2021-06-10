@@ -413,6 +413,7 @@ summary {
 progress {
   vertical-align: baseline;
 }
+
 [hidden] {
   display: none !important;
 }
@@ -5263,6 +5264,19 @@ fieldset:disabled .btn {
   max-width: 100%;
   pointer-events: none;
 }
+.Toastify__toast--info {
+  background: #3498db;
+}
+.Toastify__toast--success {
+  background: #192a6e;
+}
+.Toastify__toast--warning {
+  background: #f1c40f;
+}
+.Toastify__toast--error {
+  background: #e74c3c;
+}
+
 .toast-container > :not(:last-child) {
   margin-bottom: 0.75rem;
 }
