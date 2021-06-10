@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { toast } from 'react-toastify'
 import {
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
@@ -167,6 +168,7 @@ export const updateUserBalance = (balance) => async (dispatch, getState) => {
       type: USER_LOGIN_SUCCESS,
       payload: data,
     })
+    toast.success(`Erfolgreiche Transaktion!`)
     localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
     const message =

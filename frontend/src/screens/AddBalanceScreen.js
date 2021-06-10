@@ -12,7 +12,7 @@ const AddBalanceScreen = () => {
   const dispatch = useDispatch()
 
   const userAddBalance = useSelector((state) => state.userAddBalance)
-  const { loading, error, success } = userAddBalance
+  const { loading, error } = userAddBalance
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -25,11 +25,6 @@ const AddBalanceScreen = () => {
         <h2 className='text-center'>Guthaben aufladen</h2>
         <Container className='text-start'>
           {error && <Message variant='danger'>{error}</Message>}
-          {success && (
-            <Message variant='success'>
-              Das Guthaben wurde erfolgreich hinzugefügt
-            </Message>
-          )}
           {loading && <Loader />}
           <Form onSubmit={submitHandler}>
             <Form.Label>Betrag</Form.Label>

@@ -12,6 +12,8 @@ import MyAuctionsScreen from './screens/MyAuctionsScreen'
 import AddBalanceScreen from './screens/AddBalanceScreen'
 import AuctionEditScreen from './screens/AuctionEditScreen'
 import AuctionListScreen from './screens/AuctionListScreen'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   return (
@@ -19,6 +21,17 @@ const App = () => {
       <Header />
       <main className='py-3'>
         <Container>
+          <ToastContainer
+            position='bottom-right'
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable
+            pauseOnHover
+          />
           <Route path='/myAuctions' component={MyAuctionsScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />

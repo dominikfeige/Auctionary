@@ -6,6 +6,7 @@ import Loader from '../components/shared/Loader'
 import { Row, Container, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { listRandomAuction } from '../actions/auctionActions'
+
 const HomeScreen = () => {
   const history = useHistory()
   const dispatch = useDispatch()

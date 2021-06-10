@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Countdown, { zeroPad } from 'react-countdown'
-import Message from '../shared/Message'
 import Loader from '../shared/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { bidAuction } from '../../actions/auctionActions'
@@ -38,7 +37,9 @@ const AuctionCard = ({ auction }) => {
           <h2>
             <i className='text-warning fas fa-trophy'></i>
           </h2>
-          <h5 className='m-auto p-1'>Sie haben gewonnen!</h5>
+          <h5 className='m-auto p-1'>
+            Sie haben die Auktion mit {auction.currentBid} € gewonnen!
+          </h5>
         </Row>
       ) : (
         <Row>
@@ -131,6 +132,7 @@ const AuctionCard = ({ auction }) => {
                 <h4>{auction.currentBid}€</h4>
               </div>
             </Row>
+
             <Row>
               <div className='m-auto p-1'>
                 <h5>

@@ -78,19 +78,21 @@ const putBidAuction = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id)
   const currentAuction = await Auction.findById(req.params.id)
 
+  if (currentAuction.endDate <= new Date()) {
+    res.status(403)
+    throw new Error('Die Auktion ist bereits abgelaufen!')
+  }
   if (req.user.id == currentAuction.lastBidBy) {
     res.status(403)
     throw new Error('Sie haben bereits auf die Auktion geboten!')
   }
   if (req.body.bid <= currentAuction.currentBid) {
     res.status(403)
-    throw new Error(
-      'Ihr Gebot darf nicht gleich oder niedriger des aktuellen Gebotes sein.'
-    )
+    throw new Error('Ungültiges Gebot!')
   }
   if (user.balance < bid) {
     res.status(403)
-    throw new Error('Der Nutzer hat nicht genügend Guthaben!')
+    throw new Error('Nicht genügend Guthaben!')
   } else {
     const updatedAuction = await Auction.findByIdAndUpdate(
       req.params.id,

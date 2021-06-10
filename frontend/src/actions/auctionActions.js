@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { toast } from 'react-toastify'
 import {
   AUCTION_RANDOM_REQUEST,
   AUCTION_RANDOM_SUCCESS,
@@ -314,5 +315,6 @@ export const bidAuction = (bid, auction) => async (dispatch, getState) => {
       type: AUCTION_BID_FAIL,
       payload: message,
     })
+    toast.error(`${message}`)
   }
 }
