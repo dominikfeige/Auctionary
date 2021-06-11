@@ -46,7 +46,7 @@ const AuctionCard = ({ auction }) => {
           <h2>
             <i className='text-danger far fa-times-circle'></i>
           </h2>
-          <h5 className='m-auto p-1'>Sie haben verloren!</h5>
+          <h5 className='m-auto p-1'>Sie haben die Auktion leider verloren!</h5>
         </Row>
       )}
     </Container>
@@ -64,16 +64,35 @@ const AuctionCard = ({ auction }) => {
           <h6>Verbleibende Zeit</h6>
           {zeroPad(minutes)}:{zeroPad(seconds)}
           {userInfo._id === auction.lastBidBy ? (
-            <Row>
-              <div className='m-auto p-1 text-center'>
-                <h5 className='m-auto p-1'>Sie sind aktuell Höchstbieter!</h5>
-                <h2>
-                  <i className='fas fa-check text-success m-auto'></i>
-                </h2>
-              </div>
-            </Row>
+            <Container>
+              <Row>
+                <h6 className='m-auto p-1'>Aktuelles Gebot</h6>
+              </Row>
+              <Row>
+                <div className='m-auto p-1 text-center'>
+                  <h4>{auction.currentBid}€</h4>
+                </div>
+              </Row>
+
+              <Row>
+                <div className='m-auto p-1 text-center'>
+                  <h5 className='m-auto p-1'>Sie sind aktuell Höchstbieter!</h5>
+                  <h2>
+                    <i className='fas fa-check text-success m-auto'></i>
+                  </h2>
+                </div>
+              </Row>
+            </Container>
           ) : (
             <Container className='text-center'>
+              <Row>
+                <h6 className='m-auto p-1'>Aktuelles Gebot</h6>
+              </Row>
+              <Row>
+                <div className='m-auto p-1 text-center'>
+                  <h4>{auction.currentBid}€</h4>
+                </div>
+              </Row>
               <Row className='m-auto w-25'>
                 <Form onSubmit={submitHandler}>
                   <InputGroup className='p-1'>
@@ -112,7 +131,7 @@ const AuctionCard = ({ auction }) => {
         <>
           <Container className='my-3 p-3 w-50 rounded card text-center bg-light rounded'>
             <Row>
-              <h6 className='m-auto p-1'>Produkt</h6>
+              <h6 className='m-auto p-1'>{auction.brand}</h6>
             </Row>
             <Row>
               <h3 className='m-auto p-1'>{auction.name}</h3>
@@ -120,17 +139,9 @@ const AuctionCard = ({ auction }) => {
             <Row>
               <div className='m-auto p-1'>
                 <Image
-                  className='auction-photo p-1 img-fluid border'
+                  className='auction-photo p-1 border'
                   src={auction.image}
                 />
-              </div>
-            </Row>
-            <Row>
-              <h6 className='m-auto p-1'>Aktuelles Gebot</h6>
-            </Row>
-            <Row>
-              <div className='m-auto p-1 text-center'>
-                <h4>{auction.currentBid}€</h4>
               </div>
             </Row>
 

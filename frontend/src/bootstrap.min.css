@@ -613,7 +613,7 @@ progress {
   margin-top: var(--bs-gutter-y);
 }
 .auction-photo {
-  height: 300px;
+  max-height: 300px;
   width: auto;
 }
 .col {
