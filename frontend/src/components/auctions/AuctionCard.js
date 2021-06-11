@@ -139,7 +139,7 @@ const AuctionCard = ({ auction }) => {
             <Row>
               <div className='m-auto p-1'>
                 <Image
-                  className='auction-photo p-1 border'
+                  className='auction-photo p-1 border img-fluid'
                   src={auction.image}
                 />
               </div>
