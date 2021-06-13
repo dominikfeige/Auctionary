@@ -12,7 +12,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExists) {
     res.status(400)
-    throw new Error('Der Benutzer existiert bereits')
+    throw new Error('Der Benutzer existiert bereits!')
   }
 
   const user = await User.create({
@@ -54,7 +54,7 @@ const authUser = asyncHandler(async (req, res) => {
     })
   } else {
     res.status(401)
-    throw new Error('Falsche E-Mail Adresse oder falsches Passwort')
+    throw new Error('Falsche E-Mail Adresse oder falsches Passwort!')
   }
 })
 

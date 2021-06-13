@@ -6,12 +6,12 @@ import Message from '../components/shared/Message'
 import Loader from '../components/shared/Loader'
 import FormContainer from '../components/shared/FormContainer'
 import { register } from '../actions/userActions'
+import { toast } from 'react-toastify'
 
 const RegisterScreen = ({ location, history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [message, setMessage] = useState(null)
 
   const dispatch = useDispatch()
 
@@ -29,7 +29,7 @@ const RegisterScreen = ({ location, history }) => {
   const submitHandler = (e) => {
     e.preventDefault()
     if (password !== confirmPassword) {
-      setMessage('Passwörter stimmen nicht überein')
+      toast.error('Passwörter stimmen nicht überein')
     } else {
       dispatch(register(email, password))
     }
@@ -38,8 +38,6 @@ const RegisterScreen = ({ location, history }) => {
   return (
     <FormContainer>
       <h1>Registrieren</h1>
-      {message && <Message variant='danger'>{message}</Message>}
-      {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>

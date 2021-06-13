@@ -92,6 +92,7 @@ export const register = (email, password) => async (dispatch) => {
           ? error.response.data.message
           : error.message,
     })
+    toast.error(`${error.response.data.message}`)
   }
 }
 
