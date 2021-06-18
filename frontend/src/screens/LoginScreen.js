@@ -45,7 +45,7 @@ const LoginScreen = ({ location, history }) => {
         </Form.Group>
 
         <Form.Group controlId='password'>
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Passwort</Form.Label>
           <Form.Control
             type='password'
             placeholder='Passwort eingeben'
