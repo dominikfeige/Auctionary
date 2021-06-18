@@ -13,7 +13,6 @@
 <p align="center">
   <a href="https://auctionaryapp.herokuapp.com/">Demo anschauen</a> •
   <a href="#Anleitung für Programmierer">Anleitung für Programmierer</a> •
-  <a href="#Beispiel">Beispiel</a>
 </p>
 
 ## Anleitung für Programmierer
@@ -29,9 +28,20 @@ $ cd frontend
 $ npm install
 ```
 
-#### Befehl für das starten des Servers
+#### .env Datei
+
+```bash
+JWT_SECRET= *JWT SECRET*
+MONGO_URI= *MONGODB CONNECTION STRING*
+NODE_ENV= *DEVELOPMENT*
+PORT= 5000
+```
+
+#### Befehl für das starten des Frontend und Backend Servers
 
 ```bash
 # Webserver starten
 $ npm run dev
 ```
+
+
