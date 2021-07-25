@@ -37,7 +37,7 @@ NODE_ENV= DEVELOPMENT
 PORT= 5000
 ```
 
-#### Befehl für das starten des Frontend und Backend Servers
+#### Befehl für das Starten des Frontend und Backend Servers
 
 ```bash
 # Webserver starten
