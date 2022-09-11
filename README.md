@@ -11,7 +11,6 @@
 <h5 align="center">Dominik / Sergius / Thilo / Ricardo</h5>
 
 <p align="center">
-  <a href="https://auctionaryapp.herokuapp.com/">Demo anschauen</a> •
   <a href="#Anleitung für Programmierer">Anleitung für Programmierer</a>
 </p>
 
